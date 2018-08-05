@@ -1,5 +1,10 @@
 export WORKSPACE="$HOME/workspace"
 export HISTFILE="$HOME/.zsh_history"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
+export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export HISTSIZE=131072
 export SAVEHIST=$HISTSIZE
 export PROMPT='%F{green}%~%f %# '
