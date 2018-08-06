@@ -8,7 +8,7 @@ export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export HISTSIZE=131072
 export SAVEHIST=$HISTSIZE
 export PROMPT='%F{green}%~%f %# '
-export RPROMPT='[%F{green}%?%f]'
+export RPROMPT='[%F{green}%h - %?%f]'
 export EDITOR='vim'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -77,3 +77,19 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+
+# Autocompletion
+autoload -Uz compinit
+compinit
+setopt COMPLETE_ALIASES
+
+# autocompletion styling
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+
+# autocorrect
+setopt correctall
+
+# Enable Fish-like syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
