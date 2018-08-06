@@ -77,11 +77,11 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+setopt COMPLETE_ALIASES          # Autocomplete aliases
 
 # Autocompletion
 autoload -Uz compinit
 compinit
-setopt COMPLETE_ALIASES
 
 # autocompletion styling
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -92,4 +92,7 @@ setopt correctall
 
 # Enable Fish-like syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+# Enable Fish-like autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Enable Fish-like history substring search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
