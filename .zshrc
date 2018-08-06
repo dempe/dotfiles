@@ -18,16 +18,28 @@ export TERM="rxvt-unicode-256color"
 
 bindkey -e # Use emacs key bindings
 
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias bd='cd ..'
+alias ls='ls --color'
+alias l='ls -al'
+alias sl=ls
+alias lse='command ls -d *(/^F)' # list empty dirs
+alias lsold='ls -rtlha'
+alias lsnew='ls -tlha'
+alias lssmall='ls -Srla'
+alias lsbig='ls -Sla'
+alias watch="watch -cd" # colorize that shit
+alias vi="vim"
+alias pm="pacman"
+alias wh="which"
 alias tsm="transmission-remote"
 alias mypackages="expac '%n %p' | grep 'Chris Dempewolf' | column -t"
 alias rgrep='grep -Rn'
 alias rzsh="source $HOME/.zshrc"
 alias findf="find . -type f -name"
 alias findd="find . -type d -name"
-alias sl=ls
-alias lsa='ls -a --color'
-alias lsal='ls -al --color'
-alias ls='ls --color'
 alias tmuxa='tmux attach-session -t'
 alias tmuxn='tmux new-session -s'
 alias history='history -ED 0'
@@ -79,16 +91,11 @@ setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history.
 setopt COMPLETE_ALIASES       # Autocomplete aliases
 setopt EXTENDED_GLOB
+setopt auto_pushd             # Make cd push prev dir onto dir stack
+setopt completeinword         
+setopt hash_list_all          # Whenever a command completion is attempted, make sure the entire command path is hashed first.
+setopt auto_cd                # If a command can't be evaluated, assume it's a dir
 #setopt correctall             # Autocorrect errors
-
-# Autocompletion
-autoload -Uz compinit
-compinit
-
-# autocompletion styling
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings'     format '%BSorry, no matches for: %d%b'
-zstyle ':completion:*:default'      list-colors ${(s.:.)LS_COLORS}
 
 # Enable Fish-like syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -96,3 +103,112 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Enable Fish-like history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# support colors in less
+export LESS_TERMCAP_mb=$'\e[01;36m'
+export LESS_TERMCAP_md=$'\e[01;36m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;102;30m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[01;32m'
+
+# Autocompletion
+autoload -Uz compinit
+compinit
+
+# start menu completion only if it could find no unambiguous initial string
+zstyle ':completion:*:correct:*'       insert-unambiguous true
+zstyle ':completion:*:corrections'     format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+zstyle ':completion:*:correct:*'       original true
+# set format for warnings
+zstyle ':completion:*:warnings'        format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
+
+# activate color-completion
+zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+
+# format on completion
+zstyle ':completion:*:descriptions'    format $'%{\e[0;34m%}%B%d%b%{\e[0m%}'
+
+# automatically complete 'cd -<tab>' and 'cd -<ctrl-d>' with menu
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*'        tag-order all-expansions
+zstyle ':completion:*:history-words'   list false
+
+# activate menu
+zstyle ':completion:*:history-words'   menu yes
+
+# ignore duplicate entries
+zstyle ':completion:*:history-words'   remove-all-dups yes
+zstyle ':completion:*:history-words'   stop yes
+
+# match uppercase from lowercase
+zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
+
+# separate matches into groups
+zstyle ':completion:*:matches'         group 'yes'
+zstyle ':completion:*'                 group-name ''
+
+zstyle ':completion:*:messages'        format '%d'
+zstyle ':completion:*:options'         auto-description '%d'
+
+# describe options in full
+zstyle ':completion:*:options'         description 'yes'
+
+# on processes completion complete all user processes
+zstyle ':completion:*:processes'       command 'ps -au$USER'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# provide verbose completion information
+zstyle ':completion:*'                 verbose true
+
+# recent (as of Dec 2007) zsh versions are able to provide descriptions
+# for commands (read: 1st word in the line) that it will list for the user
+# to choose from. The following disables that, because it's not exactly fast.
+zstyle ':completion:*:-command-:*:'    verbose false
+
+
+# define files to ignore for zcompile
+zstyle ':completion:*:*:zcompile:*'    ignored-patterns '(*~|*.zwc)'
+zstyle ':completion:correct:'          prompt 'correct to: %e'
+
+# Ignore completion functions for commands you don't have:
+zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
+
+# Provide more processes in completion of programs like killall:
+zstyle ':completion:*:processes-names' command 'ps c -u ${USER} -o command | uniq'
+
+# complete manual by their section
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+zstyle ':completion:*:man:*'      menu yes select
+
+# Search path for sudo completion
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \
+                                           /usr/local/bin  \
+                                           /usr/sbin       \
+                                           /usr/bin        \
+                                           /sbin           \
+                                           /bin            \
+                                           /usr/X11R6/bin
+
+# provide .. as a completion
+zstyle ':completion:*' special-dirs ..
+
+# run rehash on completion so new installed program are found automatically:
+_force_rehash() {
+    (( CURRENT == 1 )) && rehash
+    return 1
+}
+
+# caching
+zstyle ':completion:*' use-cache yes
+zstyle ':completion::complete:*' cache-path $XDG_CACHE_HOME/zsh
+
+# Dirstack handling
+DIRSTACKSIZE=${DIRSTACKSIZE:-20}
+DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${XDG_CACHE_HOME/}}/.zdirs}

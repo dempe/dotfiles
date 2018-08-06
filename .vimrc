@@ -1,7 +1,7 @@
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 " For multi-byte character support (CJK support, for example): set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 
-set encoding=utf-8
+
 
 execute pathogen#infect()
 cnoremap sudow w !sudo tee % >/dev/null
@@ -10,6 +10,8 @@ filetype on
 filetype plugin indent on
 syntax on
 
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 set nocp
 set noswapfile
 set ruler           " Show the line and column number of the cursor position, separated by a comma.
