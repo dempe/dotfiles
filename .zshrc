@@ -7,7 +7,7 @@ export XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export HISTSIZE=131072
 export SAVEHIST=$HISTSIZE
-export PROMPT='%F{green}%~%f %F{white}%#%f '
+export PROMPT='🐡 %F{green}%~%f %F{white}%#%f '
 export RPROMPT='%F{white}[%f%(?.%F{green}%?%f.%F{red}%?%f)%F{white}]%f'
 export EDITOR='vim'
 export LC_ALL=en_US.UTF-8
@@ -15,9 +15,11 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 export TERM="rxvt-unicode-256color"
+export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 
 bindkey -e # Use emacs key bindings
 
+alias man=vman
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
@@ -33,6 +35,7 @@ alias lsbig='ls -Sla'
 alias watch="watch -cd" # colorize that shit
 alias vi="vim"
 alias pm="pacman"
+alias pms="pacman -Ss"
 alias wh="which"
 alias tsm="transmission-remote"
 alias mypackages="expac '%n %p' | grep 'Chris Dempewolf' | column -t"
