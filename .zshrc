@@ -19,6 +19,7 @@ export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 
 bindkey -e # Use emacs key bindings
 
+alias c='xclip; xclip -o | xclip -selection clipboard -i'
 alias man=vman
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
