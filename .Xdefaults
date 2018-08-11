@@ -1,11 +1,14 @@
-URxvt.font: xft:Noto Sans Mono Med:size=11:antialias=true:hinting=true,xft:Noto Sans Mono CJK KR:size=11:antialias=true:hinting=true,xft:Noto Color Emoji:size=11:antialias=true:hinting=true
+URxvt.font: xft:Noto Sans Mono Med:size=11:antialias=true:hinting=true,xft:Noto Sans Mono CJK KR:size=11:antialias=true:hinting=true,xft:Noto Color Emoji:size=11:antialias=true:hinting=true,xft:Symbola,
 URxvt.boldFont: xft:Noto Sans Mono Med:style=Bold:size=11:antialias=true:hinting=true,xft:Noto Sans Mono CJK KR:size=11:antialias=true:hinting=true
 URxvt.italicFont: xft:Noto Sans Mono Med:italic:size=11:antialias=true:hinting=true,xft:Noto Sans Mono CJK KR:size=11:antialias=true:hinting=true
 URxvt.boldItalicFont: xft:Noto Sans Mono Med:bold:italic:size=11:antialias=true:hinting=true,xft:Noto Sans Mono CJK KR:bold:size=11:antialias=true:hinting=true
 
+URxvt.letterSpace: 0
 URxvt.transparent:   true
 URxvt.shading:       30
-urxvt*termName:      rxvt
+URxvt.termName:      rxvt
+URxvt.cursorBlink:   true
+URxvt.skipBuiltinGlyphs: true
 
 #Disable URxvt "picture mode"
 URxvt.iso14755: true
