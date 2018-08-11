@@ -188,14 +188,7 @@ bar {
     workspace_buttons no
     font pango:mono 11
     status_command polybar example
-	colors {
-			background         #000000
-			statusline         $lightgrey
-            focused_workspace  $black $darkgrey
-      		active_workspace   $black $darkgrey
-#   			inactive_workspace $darkgrey $darkgrey $white
-#       		urgent_workspace   $darkblack $darkblack $white
-    }
+    mode hide
 }
 
 
