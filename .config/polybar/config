@@ -55,10 +55,11 @@ module-margin-right = 2
 font-0 = NotoSans-Regular:size=18;-1
 font-1 = Symbola:fontformat=truetype:size=18:antialias:false:hinting:true;0
 font-2 = NotoColorEmoji:fontformat=truetype:size=8:antialias:false:hinting:true;1
+font-3 = NotoSerifCJK-Medium:fontformat=truetype:size=8:antialias:false:hinting:true;2
 
 modules-left = i3
 ;modules-center = xwindow
-modules-right = backlight cpu memory volume wlan battery temperature date
+modules-right = backlight filesystem cpu memory volume wlan battery temperature date
 
 tray-position = right
 tray-padding = 0
@@ -68,18 +69,14 @@ tray-background = #0063ff
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 ;index-sort = true
 ;wrapping-scroll = false
 
-;; Only show workspaces on the same output as the bar
-;;pin-workspaces = true
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
 
 label-mode-padding = 4
 label-mode-foreground = #000
@@ -101,33 +98,39 @@ label-unfocused-padding = 4
 ;label-separator-padding = 2
 ;label-separator-foreground = #ffb52a
 
+[module/filesystem]
+type = internal/fs
 
-;[module/mpd]
-;type = internal/mpd
-;format-online = <label-song> <label-time>
-;#<icon-prev> <toggle> <icon-next>
-;#<toggle>
-;
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-;#icon-prev = <-
-;#icon-stop = X
-;#icon-play-prefix = #f00
-;#icon-play = (Paused)
-;#icon-pause =
-;#icon-next = ->
-;
-;;bar-progress-width = 45
-;;bar-progress-indicator = |
-;;bar-progress-fill = -
-;;bar-progress-empty = -
-;
-;label-song =  %artist% - %title%
-;label-song-maxlen = 70
-;label-song-ellipsis = true
+; Mountpoints to display
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 60
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Available tags:
+;   <label-mounted> (default)
+;   <bar-free>
+;   <bar-used>
+;   <ramp-capacity>
+format-mounted = <label-mounted>
+format-mounted-underline = ${xrdb:color2}
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+label-mounted = %mountpoint% %free% 
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -173,17 +176,16 @@ interface = wlp2s0
 interval = 3.0
 format-connected-underline = ${xrdb:color5}
 label-connected = %essid%
+label-disconnected = 🚫
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = no wifi
-label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.foreground}
 
 [module/date]
 type = internal/date
 interval = 1
 date = "%Y-%m-%d"
 time = "%H:%M:%S"
-;format-prefix = "📅 "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${xrdb:color12}
 label = %date% %time%
@@ -191,10 +193,9 @@ label = %date% %time%
 [module/volume]
 type = internal/alsa
 format-volume = <label-volume> <bar-volume>
-;label-volume = VOL
 label-volume = 🔊
 label-volume-foreground = ${root.foreground}
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
 label-muted = 🔇
 bar-volume-width = 10
 bar-volume-foreground-0 = ${xrdb:color10}
@@ -204,7 +205,7 @@ bar-volume-foreground-3 = ${xrdb:color10}
 bar-volume-foreground-4 = ${xrdb:color10}
 bar-volume-foreground-5 = ${xrdb:color11}
 bar-volume-foreground-6 = ${xrdb:color1}
-bar-volume-gradient = false
+bar-volume-gradient = true
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
 bar-volume-fill = =
@@ -219,83 +220,23 @@ battery = BAT0
 adapter = ADP1
 full-at = 99
 poll-interval = 5
-label-battery = 🔋
-
-format-charging = <animation-charging> <label-charging>
+label-discharging = %percentage%% 🔋
+format-discharging-underline = ${xrdb:color3}
+label-charging = %percentage%% 🔌
 format-charging-underline = ${xrdb:color3}
-
-;format-discharging = <label-discharging>
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = "🔋 "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
-
-format = <ramp> <label>
 format-underline = ${xrdb:color1}
-;format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-;[module/powermenu]
-;type = custom/menu
-;
-;format-spacing = 1
-;
-;label-open = 
-;label-open-foreground = ${colors.secondary}
-;label-close =  cancel
-;label-close-foreground = ${colors.secondary}
-;label-separator = |
-;label-separator-foreground = ${colors.foreground-alt}
-;
-;menu-0-0 = reboot
-;menu-0-0-exec = menu-open-1
-;menu-0-1 = power off
-;menu-0-1-exec = menu-open-2
-;
-;menu-1-0 = cancel
-;menu-1-0-exec = menu-open-0
-;menu-1-1 = reboot
-;menu-1-1-exec = sudo reboot
-;
-;menu-2-0 = power off
-;menu-2-0-exec = sudo poweroff
-;menu-2-1 = cancel
-;menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 5
