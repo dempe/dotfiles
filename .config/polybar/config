@@ -175,11 +175,20 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 format-connected-underline = ${xrdb:color5}
-label-connected = %essid%
 label-disconnected = 🚫
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected-foreground = ${colors.foreground}
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = %local_ip% %signal:6%% %upspeed:6% %downspeed:6% 
 
 [module/date]
 type = internal/date
