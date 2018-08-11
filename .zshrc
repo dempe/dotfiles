@@ -54,6 +54,9 @@ alias history='history -ED 0'
 alias weather='curl wttr.in'
 
 # Git aliases
+alias com="git commit"
+alias gco="git checkout"
+alias gcl="git clone"
 alias GST="git status"
 alias gst="git status"
 alias branch="git branch | grep \* | awk {'print $2'}"
