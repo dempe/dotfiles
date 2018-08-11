@@ -118,7 +118,7 @@ fixed-values = true
 ;   <bar-used>
 ;   <ramp-capacity>
 format-mounted = <label-mounted>
-format-mounted-underline = ${xrdb:color2}
+format-mounted-underline = ${xrdb:color5}
 
 ; Available tokens:
 ;   %mountpoint%
@@ -159,7 +159,7 @@ type = internal/cpu
 interval = 2
 format-prefix = "CPU: "
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${xrdb:color1}
+format-underline = ${xrdb:color12}
 label = %percentage%%
 
 [module/memory]
@@ -174,7 +174,7 @@ label = %percentage_used%%
 type = internal/network
 interface = wlp2s0
 interval = 3.0
-format-connected-underline = ${xrdb:color5}
+format-connected-underline = ${xrdb:color2}
 label-disconnected = 🚫
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
