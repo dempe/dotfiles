@@ -54,6 +54,7 @@ alias weather='curl wttr.in'
 
 # Git aliases
 alias com="git commit"
+alias comam="git commit -am"
 alias gco="git checkout"
 alias gcl="git clone"
 alias GST="git status"
