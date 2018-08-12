@@ -1,0 +1,3 @@
+[submodule ".vim/bundle/vim-superman"]
+	path = .vim/bundle/vim-superman
+	url = https://github.com/jez/vim-superman.git
