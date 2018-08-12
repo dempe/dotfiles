@@ -17,8 +17,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
-export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 
 bindkey -e # Use emacs key bindings
