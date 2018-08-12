@@ -10,14 +10,17 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 export TERM="rxvt-unicode-256color"
+export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 
+# XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
-export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
+export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
+export MAKEPKG_CONF="$XDG_CONFIG_HOME/makepkg/config"
 
 bindkey -e # Use emacs key bindings
 
