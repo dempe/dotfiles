@@ -21,7 +21,6 @@ bindkey -e # Use emacs key bindings
 
 alias ssha='eval $(ssh-agent -s) && ssh-add'
 alias c='xclip && xclip -o | xclip -selection clipboard -i'
-alias man=vman
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
