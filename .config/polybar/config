@@ -130,7 +130,7 @@ format-mounted-underline = ${xrdb:color5}
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-label-mounted = %mountpoint% %free% 
+label-mounted = %mountpoint%: %free% 
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -188,7 +188,7 @@ format-disconnected-underline = ${self.format-connected-underline}
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected = %local_ip% %signal:6%% %upspeed:6% %downspeed:6% 
+label-connected = %local_ip% %signal:4%% %upspeed:8% %downspeed:6% 
 
 [module/date]
 type = internal/date
