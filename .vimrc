@@ -2,7 +2,7 @@
 " For multi-byte character support (CJK support, for example): set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 
 
-
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 cnoremap sudow w !sudo tee % >/dev/null
 
