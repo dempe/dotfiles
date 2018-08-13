@@ -80,6 +80,8 @@ export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 export TERM="rxvt-unicode-256color"
 export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.5.0/bin"
+export PATH="$PATH:$HOME/.local/bin/aws"
 
 # XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
