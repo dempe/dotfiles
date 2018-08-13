@@ -196,3 +196,4 @@ bar {
 hide_edge_borders both
 new_window 1pixel
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
+exec --no-startup-id compton -b
