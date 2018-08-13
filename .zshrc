@@ -44,6 +44,11 @@ alias pull="git pull --rebase"
 alias gclean='git checkout master; git pull --rebase; git branch -d $(git branch --merged)'
 alias gitcon='vim $(git diff --name-only --diff-filter=U --raw | tail -1)'
 
+# ImageMagick
+crop () {
+    convert $1 -gravity South -chop 0x55 $1
+}
+
 url_decode () {
     ruby -e "require 'uri'; puts(URI.decode(\"$1\"))"
 }
