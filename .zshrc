@@ -1,3 +1,4 @@
+alias cbg='feh --randomize --bg-fill ~/wallpapers/*' # change wallpaper
 alias ssha='eval $(ssh-agent -s) && ssh-add'
 alias c='xclip && xclip -o | xclip -selection clipboard -i'
 alias grep="grep --color=auto"
