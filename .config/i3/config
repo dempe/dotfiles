@@ -9,9 +9,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-gaps inner 2
-gaps outer 2
-smart_gaps on
+# gaps inner 2
+# gaps outer 2
+# smart_gaps on
 
 set $mod Mod1
 
