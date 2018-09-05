@@ -101,6 +101,11 @@ export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
 export MAKEPKG_CONF="$XDG_CONFIG_HOME/makepkg/config"
 
+# Ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 bindkey -e # Use emacs key bindings
 
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
