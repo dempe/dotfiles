@@ -1,11 +1,10 @@
-alias cbg='feh --randomize --bg-fill ~/wallpapers/*' # change wallpaper
 alias ssha='eval $(ssh-agent -s) && ssh-add'
-alias c='xclip && xclip -o | xclip -selection clipboard -i'
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+alias rgrep='grep -Rn'
 alias bd='cd ..'
-alias ls='ls --color'
+alias ls='ls -G'
 alias l='ls -al'
 alias sl=ls
 alias lse='command ls -d *(/^F)' # list empty dirs
@@ -16,14 +15,8 @@ alias lsbig='ls -Sla'
 alias watch="watch -cd" # colorize that shit
 alias vi="vim"
 alias v="vim"
-alias pm="pacman"
-alias pi="sudo pacman -S"
-alias pms="pacman -Ss"
-alias pmr="sudo pacman -Rs"
 alias wh="which"
 alias tsm="transmission-remote"
-alias mypackages="expac '%n %p' | grep 'Chris Dempewolf' | column -t"
-alias rgrep='grep -Rn'
 alias rzsh="source $HOME/.zshrc"
 alias findf="find . -type f -name"
 alias findd="find . -type d -name"
@@ -62,19 +55,11 @@ build_gem () {
     cd $current_dir
 }
 
-wifi () {
-    sudo ip link set wlp2s0 up
-    sudo wpa_supplicant -B -i wlp2s0 -c /usr/share/doc/wpa_supplicant/send_nudes.cfg
-    sudo dhcpcd
-}
-
-new_wifi () {
-    
-}
-
+export TERMINAL="xterm-256color"
 export WORKSPACE="$HOME/workspace"
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=131072
+export HISTCONTROL=ignoreboth
 export SAVEHIST=$HISTSIZE
 export PROMPT='🐡 %F{green}%~%f %F{white}%#%f '
 # export PROMPT='%F{green}%~%f %F{white}%#%f '
@@ -84,9 +69,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
-# export TERM="rxvt-unicode-256color"
-export TERM="termite"
-export TERMINAL="termite"
 export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.5.0/bin"
 export PATH="$PATH:$HOME/.local/bin/aws"
@@ -100,11 +82,6 @@ export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc:/etc/xdg"
 export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
 export MAKEPKG_CONF="$XDG_CONFIG_HOME/makepkg/config"
-
-# Ibus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
 
 bindkey -e # Use emacs key bindings
 
@@ -123,6 +100,7 @@ setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history.
 setopt COMPLETE_ALIASES       # Autocomplete aliases
 setopt EXTENDED_GLOB
+setopt DOTGLOB 
 setopt auto_pushd             # Make cd push prev dir onto dir stack
 setopt completeinword         
 setopt hash_list_all          # Whenever a command completion is attempted, make sure the entire command path is hashed first.
@@ -130,11 +108,11 @@ setopt auto_cd                # If a command can't be evaluated, assume it's a d
 #setopt correctall             # Autocorrect errors
 
 # Enable Fish-like syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable Fish-like autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Enable Fish-like history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # support colors in less
 export LESS_TERMCAP_mb=$'\e[01;36m'
@@ -244,3 +222,5 @@ zstyle ':completion::complete:*' cache-path $XDG_CACHE_HOME/zsh
 # Dirstack handling
 DIRSTACKSIZE=${DIRSTACKSIZE:-20}
 DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${XDG_CACHE_HOME/}}/.zdirs}
+export PATH="/Users/cld/Library/Python/3.7/bin:$PATH"
+eval "$(rbenv init -)"
