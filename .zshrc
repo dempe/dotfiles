@@ -69,9 +69,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
-export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
-export PATH="$PATH:$HOME/.gem/ruby/2.5.0/bin"
-export PATH="$PATH:$HOME/.local/bin/aws"
 
 # XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -224,3 +221,8 @@ DIRSTACKSIZE=${DIRSTACKSIZE:-20}
 DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${XDG_CACHE_HOME/}}/.zdirs}
 export PATH="/Users/cld/Library/Python/3.7/bin:$PATH"
 eval "$(rbenv init -)"
+
+export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.5.0/bin"
+export PATH="$PATH:$HOME/.local/bin/aws"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
