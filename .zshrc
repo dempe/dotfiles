@@ -69,6 +69,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -97,6 +98,7 @@ setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history.
 setopt COMPLETE_ALIASES       # Autocomplete aliases
 setopt EXTENDED_GLOB
+unsetopt nomatch              # EXTENDED_GLOB treats '^' as a speacial character. This option tells zsh to ignore it when there is no match (e.g., HEAD^^).
 setopt DOTGLOB 
 setopt auto_pushd             # Make cd push prev dir onto dir stack
 setopt completeinword         
