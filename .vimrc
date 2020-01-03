@@ -1,9 +1,6 @@
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 " For multi-byte character support (CJK support, for example): set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
 cnoremap sudow w !sudo tee % >/dev/null
 
 filetype on
@@ -16,8 +13,8 @@ set nocp
 set noswapfile
 set ruler           " Show the line and column number of the cursor position, separated by a comma.
 set numberwidth=1 "set to minimum width between edge and line number
-set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
+set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
 set showcmd         " Show (partial) command in status line.
 set number          " Show line numbers.
 set hlsearch  " When there is a previous search pattern, highlight all its matches.
