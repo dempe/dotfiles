@@ -126,6 +126,8 @@
 	:config
   (define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
   (define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark)
+	
+	;; This does not work. I have to load this manually each time.
 	(load-theme 'solarized-light t))
 
 (use-package spaceline-config
@@ -174,7 +176,7 @@
 (define-key my-leader-map "fD" 'spacemacs/delete-current-buffer-file)
 (define-key my-leader-map "fS" 'evil-write-all)
 (define-key my-leader-map "fc" 'spacemacs/copy-file)
-(define-key my-leader-map "fed" 'cld/find-dotfile)
+(define-key my-leader-map "fed" 'cld/open-config)
 (define-key my-leader-map "fer" 'cld/reload-config)
 (define-key my-leader-map "ff" 'find-file)
 (define-key my-leader-map "fg" 'rgrep)
@@ -206,7 +208,9 @@
 ;; insert ---------------------------------------------------------------------
 (define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
 (define-key my-leader-map "ij" 'spacemacs/evil-insert-line-below)
-(define-key my-leader-map "id" 'cld/insert-date)
+(define-key my-leader-map "iday" 'cld/insert-day)
+(define-key my-leader-map "it" 'cld/insert-time)
+(define-key my-leader-map "idt" 'cld/insert-datetime)
 
 ;; narrow & widen -------------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)

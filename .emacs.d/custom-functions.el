@@ -8,25 +8,25 @@
 (defvar spacemacs-really-kill-emacs nil
   "Prevent window manager close from closing instance.")
 
-(defun cld/find-dotfile ()
+(defun cld/open-config ()
   "Edit the `dotfile', in the current window."
   (interactive)
-  (find-file-existing "~/.emacs.d/init.el"))
+  (find-file-existing "~/.emacs.d/my-config.el"))
 
 (defun cld/insert-day ()
-  "Insert standard datetime string."
+  "Insert weekday + ISO 8601 date string."
   (interactive)
-  (insert (format-time-string "%c")))
+  (insert (format-time-string "%a %Y-%m-%d")))
 
 (defun cld/insert-time ()
-  "Insert standard date time string." 
+  "Insert ISO 8601 time string."
   (interactive)
-  (insert (format-time-string "%c")))
+  (insert (format-time-string "%H:%M:%S")))
 
 (defun cld/insert-datetime ()
-  "Insert standard date time string." 
+  "Insert ISO 8601 date time string."
   (interactive)
-  (insert (format-time-string "%c")))
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
 ;; note: doesn't seem to do anything
 (defun cld/indent-region-or-buffer ()
