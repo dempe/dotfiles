@@ -10,6 +10,12 @@
 
 (setq initial-scratch-message "")
 
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+
 ;; Download Evil
 (unless (package-installed-p 'evil)
 	(package-install 'evil))
@@ -43,6 +49,9 @@
 ;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
 (define-key my-leader-map "e" 'execute-extended-command)
 (define-key my-leader-map "e" 'helm-M-x)
+
+;; ace-jump-mode
+(define-key my-leader-map "aj" 'ace-jump-mode)
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -162,7 +171,7 @@
  '(global-company-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
- '(package-selected-packages (quote (helm company which-key evil)))
+ '(package-selected-packages (quote (ace-jump-mode helm company which-key evil)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
