@@ -6,15 +6,25 @@
 ;; TODO: spacemacs/next-error, spacemacs/previous-error - need to install flycheck
 
 (defvar spacemacs-really-kill-emacs nil
-  "prevent window manager close from closing instance.")
+  "Prevent window manager close from closing instance.")
 
 (defun cld/find-dotfile ()
   "Edit the `dotfile', in the current window."
   (interactive)
   (find-file-existing "~/.emacs.d/init.el"))
 
-(defun cld/insert-date ()
-  "Inserts standard date time string." 
+(defun cld/insert-day ()
+  "Insert standard datetime string."
+  (interactive)
+  (insert (format-time-string "%c")))
+
+(defun cld/insert-time ()
+  "Insert standard date time string." 
+  (interactive)
+  (insert (format-time-string "%c")))
+
+(defun cld/insert-datetime ()
+  "Insert standard date time string." 
   (interactive)
   (insert (format-time-string "%c")))
 
@@ -32,19 +42,28 @@
         (message "Indented buffer.")))
     (whitespace-cleanup)))
 
+(defun cld/load-theme-solarized-dark ()
+	"Load https://github.com/bbatsov/solarized-emacs dark."
+	(interactive)
+	(load-theme 'solarized-dark t))
+
+(defun cld/load-theme-solarized-light ()
+	"Load https://github.com/bbatsov/solarized-emacs light."
+	(interactive)
+	(load-theme 'solarized-light t))
+
 (defun cld/reload-config ()
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
 (defun cld/switch-to-scratch-buffer ()
-  "Switch to the `*scratch*' buffer. Create it first if needed."
+  "Switch to the `*scratch*' buffer.  Create it first if needed."
   (interactive)
   (let ((exists (get-buffer "*scratch*")))
     (switch-to-buffer (get-buffer-create "*scratch*"))))
 
 (defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window."
+  "Switch back and forth between current and last buffer in the current WINDOW."
   (interactive)
   (let ((current-buffer (window-buffer window))
         (buffer-predicate
