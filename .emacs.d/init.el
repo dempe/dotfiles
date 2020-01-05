@@ -36,6 +36,11 @@
 ;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
 ;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
+
+;; Bind <SPC e> to the M-x function.
+;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
+(define-key my-leader-map "e" 'execute-extended-command)
+
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
 
@@ -93,6 +98,7 @@
 ;; insert ---------------------------------------------------------------------
 (define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
 (define-key my-leader-map "ij" 'spacemacs/evil-insert-line-below)
+(define-key my-leader-map "id" 'cld/insert-date)
 
 ;; narrow & widen -------------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
@@ -127,6 +133,7 @@
 (define-key my-leader-map "wF" 'make-frame)
 (define-key my-leader-map "wH" 'evil-window-move-far-left)
 (define-key my-leader-map "wf" 'follow-mode)
+(define-key my-leader-map "wk" 'delete-window)
 (define-key my-leader-map "wo" 'other-frame)
 (define-key my-leader-map "ws" 'spacemacs/split-window-below-and-focus)
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)

@@ -13,13 +13,10 @@
   (interactive)
   (find-file-existing "~/.emacs.d/init.el"))
 
-(defun spacemacs/frame-killer ()
-  "Kill server buffer and hide the main Emacs window"
+(defun cld/insert-date ()
+  "Inserts standard date time string." 
   (interactive)
-  (condition-case-unless-debug nil
-      (delete-frame nil 1)
-      (error
-       (make-frame-invisible nil 1))))
+  (insert (format-time-string "%c")))
 
 ;; note: doesn't seem to do anything
 (defun cld/indent-region-or-buffer ()
