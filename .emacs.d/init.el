@@ -1,39 +1,46 @@
+;; ~~~~~~~~~~~~~~~~~~~~~~~ GENERAL CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+;; Open recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+
+(setq initial-scratch-message "")
+
+(load-file "~/.emacs.d/custom-functions.el")
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 												 ("melpa" . "https://melpa.org/packages/")
 												 ("org" . "http://orgmode.org/elpa/")))
-
 (require 'package)
 (package-initialize)
 (package-refresh-contents)
-
-(load-file "~/.emacs.d/custom-functions.el")
 
 ;; Setup use-package
 (eval-when-compile
   (require 'use-package))
 
-;; Enable Evil
-(require 'evil)
-(evil-mode 1)
+(use-package evil
+	:ensure evil
+	:config
+	(evil-mode 1)
 
-(setq evil-search-wrap t
+	(setq evil-search-wrap t
 			evil-regexp-search t)
-(setq-default tab-width 2)
+  (setq-default tab-width 2)
 
-(defvar my-leader-map (make-sparse-keymap)
+	(defvar my-leader-map (make-sparse-keymap)
 	"Keymap for \"leader key\" shortcuts.")
-
-;; binding "," to the keymap
-(define-key evil-normal-state-map "," my-leader-map)
-
-(setq initial-scratch-message "")
-
+	
+  ;; binding "," to the keymap
+  (define-key evil-normal-state-map "," my-leader-map))
 
 (use-package smartparens-config
   :ensure smartparens
   :config (progn (show-smartparens-global-mode t)))
-(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
+(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
 
 ;; Enable rainbow delimters for most programming languages
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -46,42 +53,37 @@
 	:init
 	(define-key my-leader-map "aj" 'ace-jump-mode))
 
-;; Open recent files
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
+(use-package anzu
+	:config
+	(global-anzu-mode +1))
 
-;; Start anzu
-(global-anzu-mode +1)
+(use-package evil-mc
+	:config
+	(global-evil-mc-mode 1)
+	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
+  (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
 
+(use-package which-key
+	:config
+  (which-key-setup-side-window-right-bottom)
+  (which-key-mode))
 
-;; Enable evil-mc
-(require 'evil-mc)
-(global-evil-mc-mode  1)
-
-(require 'which-key)
-(which-key-setup-side-window-right-bottom)
-(which-key-mode)
-
-(require 'spaceline-config)
-(spaceline-emacs-theme)
-
-;; Enable company-mode
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; Most of the following keybindings are taken from the Spacemacs project.
-;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
-;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
+(use-package spaceline-config
+	:config
+  (spaceline-emacs-theme))
 
 ;; Bind <SPC e> to the M-x function (with Helm).
 ;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
 ;;(define-key my-leader-map "e" 'execute-extended-command)
-(define-key my-leader-map "c" 'helm-M-x)
+(use-package helm
+	:config
+	(define-key my-leader-map "c" 'helm-M-x))
 
+;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; evil-mc keys
-(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
-(define-key my-leader-map "emu" 'evil-mc-undo-all-cursors)
+;; Most of the following keybindings are taken from the Spacemacs project.
+;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
+;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -125,7 +127,7 @@
 (define-key my-leader-map "fvp" 'add-file-local-variable-prop-line)
 (define-key my-leader-map "fy" 'spacemacs/show-and-copy-buffer-filename)
 
-;; execution ------------------------------------------------------------------
+;; evaluation ------------------------------------------------------------------
 (define-key my-leader-map "eb" 'eval-buffer)
 
 ;; format ---------------------------------------------------------------------
@@ -190,7 +192,6 @@
 (define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
 (define-key evil-normal-state-map (kbd "SPC") my-leader-map)
 
-;; Remove toolbar
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -209,7 +210,7 @@
  '(org-agenda-files (quote ("~/workspace/todo.org")))
  '(package-selected-packages
 	 (quote
-		(use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck cyberpunk-theme spaceline swiper magit ace-jump-mode helm company which-key evil)))
+		(use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
  '(paradox-lines-per-entry 2)
  '(safe-local-variable-values
 	 (quote
