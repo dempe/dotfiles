@@ -14,10 +14,6 @@
 (unless (package-installed-p 'evil)
 	(package-install 'evil))
 
-(require 'which-key)
-(which-key-setup-side-window-right-bottom)
-(which-key-mode)
-
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
@@ -25,6 +21,13 @@
 (setq evil-search-wrap t
 			evil-regexp-search t)
 (setq-default tab-width 2)
+
+(require 'which-key)
+(which-key-setup-side-window-right-bottom)
+(which-key-mode)
+
+;; Enable company-mode
+(add-hook 'after-init-hook 'global-company-mode)
 
 (defvar my-leader-map (make-sparse-keymap)
 	"Keymap for \"leader key\" shortcuts.")
@@ -153,11 +156,13 @@
 	 [default default default italic underline success warning error])
  '(ansi-color-names-vector
 	 ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(company-auto-complete t)
  '(custom-enabled-themes (quote (wheatgrass)))
  '(evil-want-C-u-scroll t)
+ '(global-company-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
- '(package-selected-packages (quote (which-key evil)))
+ '(package-selected-packages (quote (company which-key evil)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
