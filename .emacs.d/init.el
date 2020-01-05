@@ -14,6 +14,10 @@
 (unless (package-installed-p 'evil)
 	(package-install 'evil))
 
+(require 'which-key)
+(which-key-setup-side-window-right-bottom)
+(which-key-mode)
+
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
@@ -30,6 +34,7 @@
 
 ;; Most of the following keybindings are taken from the Spacemacs project.
 ;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
+;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -145,7 +150,7 @@
  '(evil-want-C-u-scroll t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
- '(package-selected-packages (quote (evil)))
+ '(package-selected-packages (quote (which-key evil)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
