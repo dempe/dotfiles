@@ -28,6 +28,9 @@
 ;; binding "," to the keymap
 (define-key evil-normal-state-map "," my-leader-map)
 
+;; Most of the following keybindings are taken from the Spacemacs project.
+;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
+
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
 
