@@ -8,22 +8,9 @@
 
 (load-file "~/.emacs.d/custom-functions.el")
 
-(setq initial-scratch-message "")
-
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-
-;; Open recent files
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-
-;; Download Evil
-(unless (package-installed-p 'evil)
-	(package-install 'evil))
+;; Setup use-package
+(eval-when-compile
+  (require 'use-package))
 
 ;; Enable Evil
 (require 'evil)
@@ -32,6 +19,45 @@
 (setq evil-search-wrap t
 			evil-regexp-search t)
 (setq-default tab-width 2)
+
+(defvar my-leader-map (make-sparse-keymap)
+	"Keymap for \"leader key\" shortcuts.")
+
+;; binding "," to the keymap
+(define-key evil-normal-state-map "," my-leader-map)
+
+(setq initial-scratch-message "")
+
+
+(use-package smartparens-config
+  :ensure smartparens
+  :config (progn (show-smartparens-global-mode t)))
+(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+
+;; Enable rainbow delimters for most programming languages
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+(use-package paradox
+	:config
+	(paradox-enable))
+
+(use-package ace-jump-mode
+	:init
+	(define-key my-leader-map "aj" 'ace-jump-mode))
+
+;; Open recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+
+;; Start anzu
+(global-anzu-mode +1)
+
+
+;; Enable evil-mc
+(require 'evil-mc)
+(global-evil-mc-mode  1)
 
 (require 'which-key)
 (which-key-setup-side-window-right-bottom)
@@ -43,25 +69,19 @@
 ;; Enable company-mode
 (add-hook 'after-init-hook 'global-company-mode)
 
-(defvar my-leader-map (make-sparse-keymap)
-	"Keymap for \"leader key\" shortcuts.")
-
-;; binding "," to the keymap
-(define-key evil-normal-state-map "," my-leader-map)
-
 ;; Most of the following keybindings are taken from the Spacemacs project.
 ;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
 ;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
 ;; Bind <SPC e> to the M-x function (with Helm).
 ;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
-(define-key my-leader-map "e" 'execute-extended-command)
-(define-key my-leader-map "e" 'helm-M-x)
-
-;; ace-jump-mode
-(define-key my-leader-map "aj" 'ace-jump-mode)
+;;(define-key my-leader-map "e" 'execute-extended-command)
+(define-key my-leader-map "c" 'helm-M-x)
 
 
+;; evil-mc keys
+(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
+(define-key my-leader-map "emu" 'evil-mc-undo-all-cursors)
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -83,10 +103,11 @@
 (define-key my-leader-map "bs" 'cld/switch-to-scratch-buffer)
 (define-key my-leader-map "bw" 'read-only-mode)
 
+;; These are commented out, because I never use them and wanted to use c for M-x
 ;; compilation ----------------------------------------------------------------
-(define-key my-leader-map "cC" 'compile)
-(define-key my-leader-map "ck" 'kill-compilation)
-(define-key my-leader-map "cr" 'recompile)
+;;(define-key my-leader-map "cC" 'compile)
+;;(define-key my-leader-map "ck" 'kill-compilation)
+;;(define-key my-leader-map "cr" 'recompile)
 
 ;; files ----------------------------------------------------------------------
 (define-key my-leader-map "fD" 'spacemacs/delete-current-buffer-file)
@@ -103,6 +124,9 @@
 (define-key my-leader-map "fvf" 'add-file-local-variable)
 (define-key my-leader-map "fvp" 'add-file-local-variable-prop-line)
 (define-key my-leader-map "fy" 'spacemacs/show-and-copy-buffer-filename)
+
+;; execution ------------------------------------------------------------------
+(define-key my-leader-map "eb" 'eval-buffer)
 
 ;; format ---------------------------------------------------------------------
 (define-key my-leader-map "jo" 'open-line)
@@ -179,12 +203,14 @@
  '(company-auto-complete t)
  '(custom-enabled-themes (quote (wheatgrass)))
  '(evil-want-C-u-scroll t)
+ '(fci-rule-color "#383838")
  '(global-company-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
  '(package-selected-packages
 	 (quote
-		(spaceline swiper magit ace-jump-mode helm company which-key evil)))
+		(use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck cyberpunk-theme spaceline swiper magit ace-jump-mode helm company which-key evil)))
+ '(paradox-lines-per-entry 2)
  '(safe-local-variable-values
 	 (quote
 		((org-todo-keyword-faces
