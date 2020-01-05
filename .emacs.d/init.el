@@ -20,6 +20,13 @@
 ;; Setup use-package
 (eval-when-compile
   (require 'use-package))
+;; Generate a report of load times with M-x use-package-report
+(setq use-package-compute-statistics 1)
+
+(use-package anzu
+	:diminish
+	:config
+	(global-anzu-mode 1))
 
 (use-package evil
 	:ensure evil
@@ -40,48 +47,56 @@
 	(define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
 	(define-key evil-normal-state-map (kbd "SPC") my-leader-map))
 
-(use-package smartparens-config
-  :ensure smartparens
-  :config (progn (show-smartparens-global-mode t))
-	:hook ((prog-mode . turn-on-smartparens-mode)
-				 (markdown-mode . turn-on-smartparens-mode)))
-
-;; Enable rainbow delimters for most programming languages
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
-(use-package paradox
-	:config
-	(paradox-enable))
-
 (use-package ace-jump-mode
+	:after evil ;; should make this order-agnostic, but this does not appear to work
 	:init
 	(define-key my-leader-map "aj" 'ace-jump-mode))
 
-(use-package anzu
+(use-package diminish
 	:config
-	(global-anzu-mode +1))
+	(diminish 'undo-tree-mode)
+	(diminish 'eldoc-mode))
 
 (use-package evil-mc
+	:diminish
 	:config
 	(global-evil-mc-mode 1)
 	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
   (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
 
-(use-package which-key
+;; Bind <SPC c> to the M-x function (with Helm).
+;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
+;;(define-key my-leader-map "c" 'execute-extended-command)
+(use-package helm
 	:config
-  (which-key-setup-side-window-right-bottom)
-  (which-key-mode))
+	(define-key my-leader-map "c" 'helm-M-x))
+
+(use-package paradox
+	:config
+	(paradox-enable))
+
+(use-package rainbow-delimiters
+	:hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package smartparens
+	:diminish
+  :ensure smartparens
+  :config
+	(progn (show-smartparens-global-mode t))
+	;; disable pairing of single quotes
+	(sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+	:hook ((prog-mode . turn-on-smartparens-mode)
+				 (markdown-mode . turn-on-smartparens-mode)))
 
 (use-package spaceline-config
 	:config
   (spaceline-emacs-theme))
 
-;; Bind <SPC e> to the M-x function (with Helm).
-;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
-;;(define-key my-leader-map "e" 'execute-extended-command)
-(use-package helm
+(use-package which-key
+	:diminish
 	:config
-	(define-key my-leader-map "c" 'helm-M-x))
+  (which-key-setup-side-window-right-bottom)
+  (which-key-mode))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -211,7 +226,7 @@
  '(org-agenda-files (quote ("~/workspace/todo.org")))
  '(package-selected-packages
 	 (quote
-		(use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
+		(diminish use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
  '(paradox-lines-per-entry 2)
  '(safe-local-variable-values
 	 (quote
