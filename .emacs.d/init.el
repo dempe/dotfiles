@@ -28,6 +28,11 @@
 	:config
 	(global-anzu-mode 1))
 
+(use-package diminish
+	:config
+	(diminish 'undo-tree-mode)
+	(diminish 'eldoc-mode))
+
 (use-package evil
 	:ensure evil
 	:config
@@ -52,17 +57,18 @@
 	:init
 	(define-key my-leader-map "aj" 'ace-jump-mode))
 
-(use-package diminish
-	:config
-	(diminish 'undo-tree-mode)
-	(diminish 'eldoc-mode))
-
 (use-package evil-mc
 	:diminish
 	:config
 	(global-evil-mc-mode 1)
 	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
   (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
+
+(use-package flycheck
+	:config
+	(global-flycheck-mode)
+	(define-key my-leader-map "en" 'next-error)
+  (define-key my-leader-map "ep" 'previous-error))
 
 ;; Bind <SPC c> to the M-x function (with Helm).
 ;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
@@ -195,7 +201,6 @@
 (define-key my-leader-map "xU" 'upcase-region)
 (define-key my-leader-map "xu" 'downcase-region)
 
-
 ;; windows --------------------------------------------------------------------
 (define-key my-leader-map "w=" 'balance-windows)
 (define-key my-leader-map "wF" 'make-frame)
@@ -207,6 +212,8 @@
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
 (define-key my-leader-map "ww" 'other-window)
 
+;; ~~~~~~~~~~~~~~~~~~~~~~~ CUSTOM CONFIGURATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~ DO NOT TOUCH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -248,5 +255,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff0000"))))
+ '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ffa500"))))
+ '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ffff00"))))
+ '(rainbow-delimiters-depth-4-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00ff00"))))
+ '(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground "#0000ff"))))
+ '(rainbow-delimiters-depth-6-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ff00ff"))))
+ '(rainbow-delimiters-depth-7-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ffffff"))))
+ '(rainbow-delimiters-depth-8-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00ff00"))))
+ '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground "#89cffa")))))
 (put 'narrow-to-region 'disabled nil)
