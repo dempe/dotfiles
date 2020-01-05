@@ -95,19 +95,9 @@
 (use-package paradox
 	:config
 	(paradox-enable))
-
+ 
 (use-package rainbow-delimiters
 	:hook (prog-mode . rainbow-delimiters-mode))
-
-;;(use-package smartparens
-;;	:diminish
-;;  :ensure smartparens
-;;  :config
-;;	(progn (show-smartparens-global-mode t))
-;;	;; disable pairing of single quotes
-;;	(sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
-;;	:hook ((prog-mode . turn-on-smartparens-mode)
-;;				 (markdown-mode . turn-on-smartparens-mode)))
 
 (use-package solarized-theme
 	:init
