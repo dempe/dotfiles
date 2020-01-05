@@ -16,6 +16,11 @@
   "Emacs quick move minor mode"
   t)
 
+;; Open recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+
 ;; Download Evil
 (unless (package-installed-p 'evil)
 	(package-install 'evil))
@@ -31,6 +36,9 @@
 (require 'which-key)
 (which-key-setup-side-window-right-bottom)
 (which-key-mode)
+
+(require 'spaceline-config)
+(spaceline-emacs-theme)
 
 ;; Enable company-mode
 (add-hook 'after-init-hook 'global-company-mode)
@@ -52,6 +60,8 @@
 
 ;; ace-jump-mode
 (define-key my-leader-map "aj" 'ace-jump-mode)
+
+
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -87,6 +97,7 @@
 (define-key my-leader-map "ff" 'find-file)
 (define-key my-leader-map "fg" 'rgrep)
 (define-key my-leader-map "fl" 'find-file-literally)
+(define-key my-leader-map "fr" 'recentf-open-files)
 (define-key my-leader-map "fs" 'save-buffer)
 (define-key my-leader-map "fvd" 'add-dir-local-variable)
 (define-key my-leader-map "fvf" 'add-file-local-variable)
@@ -171,7 +182,19 @@
  '(global-company-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
- '(package-selected-packages (quote (ace-jump-mode helm company which-key evil)))
+ '(package-selected-packages
+	 (quote
+		(spaceline swiper magit ace-jump-mode helm company which-key evil)))
+ '(safe-local-variable-values
+	 (quote
+		((org-todo-keyword-faces
+			("GOOD" . "green")
+			("OKAY" . "yellow")
+			("BAD" . "red"))
+		 (org-todo-keyword-faces
+			("GOOD" . "green")
+			("OKAY" . "orange")
+			("BAD" . "red")))))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
