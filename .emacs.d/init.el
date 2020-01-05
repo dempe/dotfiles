@@ -15,7 +15,8 @@
 												 ("org" . "http://orgmode.org/elpa/")))
 (require 'package)
 (package-initialize)
-(package-refresh-contents)
+;; Refresh packages asynchronously
+(package-refresh-contents 1)
 
 ;; Setup use-package
 (eval-when-compile
@@ -75,7 +76,21 @@
 ;;(define-key my-leader-map "c" 'execute-extended-command)
 (use-package helm
 	:config
+	(setq
+  helm-always-two-windows t
+  helm-split-window-default-side 'left)
 	(define-key my-leader-map "c" 'helm-M-x))
+
+(use-package helm-flx
+	:config
+  (helm-flx-mode 1)
+	(setq helm-flx-for-helm-find-files t
+        helm-flx-for-helm-locate t))
+
+;; needs more setup. does not work.
+(use-package helm-fuzzier
+	:config
+	(helm-fuzzier-mode 1))
 
 (use-package paradox
 	:config
@@ -233,7 +248,7 @@
  '(org-agenda-files (quote ("~/workspace/todo.org")))
  '(package-selected-packages
 	 (quote
-		(diminish use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
+		(helm-fuzzier helm-flx diminish use-package smartparens evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
  '(paradox-lines-per-entry 2)
  '(safe-local-variable-values
 	 (quote
