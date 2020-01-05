@@ -34,13 +34,17 @@
 	"Keymap for \"leader key\" shortcuts.")
 	
   ;; binding "," to the keymap
-  (define-key evil-normal-state-map "," my-leader-map))
+  (define-key evil-normal-state-map "," my-leader-map)
+
+	;; change the "leader" key to space
+	(define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
+	(define-key evil-normal-state-map (kbd "SPC") my-leader-map))
 
 (use-package smartparens-config
   :ensure smartparens
-  :config (progn (show-smartparens-global-mode t)))
-(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
+  :config (progn (show-smartparens-global-mode t))
+	:hook ((prog-mode . turn-on-smartparens-mode)
+				 (markdown-mode . turn-on-smartparens-mode)))
 
 ;; Enable rainbow delimters for most programming languages
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -188,9 +192,6 @@
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
 (define-key my-leader-map "ww" 'other-window)
 
-;; change the "leader" key to space
-(define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
-(define-key evil-normal-state-map (kbd "SPC") my-leader-map)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
