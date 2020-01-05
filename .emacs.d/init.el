@@ -39,10 +39,10 @@
 ;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
 ;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
-
-;; Bind <SPC e> to the M-x function.
+;; Bind <SPC e> to the M-x function (with Helm).
 ;; I'm using e, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
 (define-key my-leader-map "e" 'execute-extended-command)
+(define-key my-leader-map "e" 'helm-M-x)
 
 ;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
@@ -162,7 +162,7 @@
  '(global-company-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/workspace/todo.org")))
- '(package-selected-packages (quote (company which-key evil)))
+ '(package-selected-packages (quote (helm company which-key evil)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
