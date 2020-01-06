@@ -29,6 +29,9 @@
 	:config
 	(global-anzu-mode 1))
 
+(use-package company
+	:hook (after-init . global-company-mode))
+
 (use-package diminish
 	:config
 	(diminish 'undo-tree-mode)
@@ -125,11 +128,16 @@
 
 	:config
   (define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
-  (define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark)
-	
-	;; This does not work. I have to load this manually each time.
-	(load-theme 'solarized-light t))
+  (define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark))
 
+(use-package moe-theme
+	:config
+  (define-key my-leader-map "ltml" 'moe-light)
+  (define-key my-leader-map "ltmd" 'moe-dark))
+
+(use-package nova-theme
+	:config
+  (define-key my-leader-map "ltn" 'cld/load-theme-nova))
 (use-package spaceline-config
 	:config
   (spaceline-emacs-theme))

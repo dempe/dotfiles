@@ -42,6 +42,11 @@
         (message "Indented buffer.")))
     (whitespace-cleanup)))
 
+(defun cld/load-theme-nova ()
+	"Load nova-theme: https://github.com/muirmanders/emacs-nova-theme."
+	(interactive)
+	(load-theme 'nova t))
+
 (defun cld/load-theme-solarized-dark ()
 	"Load https://github.com/bbatsov/solarized-emacs dark."
 	(interactive)
