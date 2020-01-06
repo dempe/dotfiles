@@ -6,6 +6,7 @@
 (setq recentf-max-saved-items 25)
 
 (setq initial-scratch-message "")
+(setq org-hide-emphasis-markers t)
 
 (load-file "~/.emacs.d/custom-functions.el")
 
@@ -29,7 +30,16 @@
 	:config
 	(global-anzu-mode 1))
 
+;; *Both* TAB and RET autocomplete a word. This is extremely frustrating when I want to enter a newline. How do you turn this off for RET?
+;; Update: Solved with https://emacs.stackexchange.com/a/13290
+;; However, now if you press tab to complete something from the menu then try to press RET, you will get an error message and be unable to move the cursor.
+;; How do you turn off the menu?
+;; Update: You can get unstuck with C-g; the menu is simply for when there are multiple choices. Still annoying.
 (use-package company
+	:diminish
+	:config
+	(define-key company-active-map (kbd "RET") nil)
+	(define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
 	:hook (after-init . global-company-mode))
 
 (use-package diminish
@@ -69,6 +79,7 @@
   (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
 
 (use-package flycheck
+	:diminish
 	:config
 	(global-flycheck-mode)
 	(define-key my-leader-map "en" 'next-error)
@@ -219,9 +230,11 @@
 (define-key my-leader-map "iday" 'cld/insert-day)
 (define-key my-leader-map "it" 'cld/insert-time)
 (define-key my-leader-map "idt" 'cld/insert-datetime)
+(define-key my-leader-map "idl" 'cld/insert-date-long)
 
 ;; narrow & widen -------------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
+(define-key my-leader-map "nos" 'org-narrow-to-subtree)
 (define-key my-leader-map "np" 'narrow-to-page)
 (define-key my-leader-map "nr" 'narrow-to-region)
 (define-key my-leader-map "nw" 'widen)
@@ -231,6 +244,33 @@
 (define-key my-leader-map "j$" 'spacemacs/push-mark-and-goto-end-of-line)
 (define-key my-leader-map "jf" 'find-function)
 (define-key my-leader-map "jv" 'find-variable)
+
+;; org-mode --------------------------------------------------------------------
+(define-key my-leader-map "ob" 'org-backward-heading-same-level)
+(define-key my-leader-map "oc" 'org-clock-in)
+(define-key my-leader-map "odd" 'org-do-demote)
+(define-key my-leader-map "odp" 'org-do-promote)
+(define-key my-leader-map "ods" 'org-demote-subtree)
+(define-key my-leader-map "oes" 'org-edit-special)
+(define-key my-leader-map "oem" 'cld/toggle-org-emphasis-markers)
+(define-key my-leader-map "of" 'org-forward-heading-same-level)
+(define-key my-leader-map "oi" 'org-insert-heading-respect-content)
+(define-key my-leader-map "ops" 'org-promote-subtree)
+(define-key my-leader-map "osa" 'outline-show-all)
+(define-key my-leader-map "osp" 'org-set-property)
+(define-key my-leader-map "ost" 'org-set-tags-command)
+(define-key my-leader-map "ot" 'org-todo)
+
+;; windows --------------------------------------------------------------------
+(define-key my-leader-map "w=" 'balance-windows)
+(define-key my-leader-map "wF" 'make-frame)
+(define-key my-leader-map "wH" 'evil-window-move-far-left)
+(define-key my-leader-map "wf" 'follow-mode)
+(define-key my-leader-map "wk" 'delete-window)
+(define-key my-leader-map "wo" 'other-frame)
+(define-key my-leader-map "ws" 'spacemacs/split-window-below-and-focus)
+(define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
+(define-key my-leader-map "ww" 'other-window)
 
 ;; text -----------------------------------------------------------------------
 (define-key my-leader-map "xaa" 'align)
@@ -246,14 +286,3 @@
 (define-key my-leader-map "xtw" 'transpose-words)
 (define-key my-leader-map "xU" 'upcase-region)
 (define-key my-leader-map "xu" 'downcase-region)
-
-;; windows --------------------------------------------------------------------
-(define-key my-leader-map "w=" 'balance-windows)
-(define-key my-leader-map "wF" 'make-frame)
-(define-key my-leader-map "wH" 'evil-window-move-far-left)
-(define-key my-leader-map "wf" 'follow-mode)
-(define-key my-leader-map "wk" 'delete-window)
-(define-key my-leader-map "wo" 'other-frame)
-(define-key my-leader-map "ws" 'spacemacs/split-window-below-and-focus)
-(define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
-(define-key my-leader-map "ww" 'other-window)

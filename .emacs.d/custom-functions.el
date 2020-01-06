@@ -28,6 +28,11 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
+(defun cld/insert-date-long ()
+  "Insert date in locale format (e.g., Sat Jan  4 23:19:28 2020)."
+  (interactive)
+  (insert (format-time-string "%c")))
+
 ;; note: doesn't seem to do anything
 (defun cld/indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
@@ -66,6 +71,11 @@
   (interactive)
   (let ((exists (get-buffer "*scratch*")))
     (switch-to-buffer (get-buffer-create "*scratch*"))))
+
+(defun cld/toggle-org-emphasis-markers ()
+	"`org-mode` hides emphasis markers (*, /, =, etc.) by default.  Most of the time, I don't want to see them, but if I need to edit them, I need access to them."
+	(interactive)
+  (setq org-hide-emphasis-markers (not org-hide-emphasis-markers)))
 
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the current WINDOW."
@@ -111,8 +121,7 @@
         (message "File '%s' successfully removed" filename)))))
 
 (defun spacemacs/evil-insert-line-above (count)
-  "Insert one or several lines above the current point's line without changing
-the current state and point position."
+  "Insert one or COUNT lines above the current point's line without changing the current state and point position."
   (interactive "p")
   (dotimes (_ count) (save-excursion (evil-insert-newline-above))))
 
