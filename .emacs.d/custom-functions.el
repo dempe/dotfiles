@@ -1,9 +1,15 @@
-;; This is a list of functions cherry-picked from the Spacemacs projects.
-;; In particular,
+;;; custom-functions.el -- Hacking Emacs.
+
+;;; Commentary:
+;;
+;; This is a list of functions loaded in my config.  Many are my own (namespaced under "cld").  Others are cherry-picked from the Spacemacs project (namespaced "spacemacs").
+;;
+;; The Spacemacs files I used are:
 ;;   - https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/core/core-funcs.el
 ;;   - https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/funcs.el
 
-;; TODO: spacemacs/next-error, spacemacs/previous-error - need to install flycheck
+;;; Code:
+
 
 (defvar spacemacs-really-kill-emacs nil
   "Prevent window manager close from closing instance.")
@@ -33,7 +39,7 @@
   (interactive)
   (insert (format-time-string "%c")))
 
-;; note: doesn't seem to do anything
+;; Note: doesn't seem to do anything
 (defun cld/indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
@@ -46,6 +52,12 @@
         (evil-indent (point-min) (point-max))
         (message "Indented buffer.")))
     (whitespace-cleanup)))
+
+;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
+(defun cld/revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
 
 (defun cld/load-theme-nova ()
 	"Load nova-theme: https://github.com/muirmanders/emacs-nova-theme."

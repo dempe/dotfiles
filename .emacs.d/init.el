@@ -56,7 +56,7 @@
  '(org-agenda-files (quote ("~/workspace/todo.org")))
  '(package-selected-packages
 	 (quote
-		(company nova-theme moe-theme solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
+		(evil-rsi evil-commentary company nova-theme moe-theme solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck spaceline swiper magit ace-jump-mode helm which-key evil)))
  '(paradox-lines-per-entry 2)
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")

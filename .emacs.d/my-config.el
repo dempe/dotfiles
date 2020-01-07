@@ -1,3 +1,10 @@
+;;; my-config.el -- Manual configs
+;;; Commentary:
+;;
+;; This file is loaded in init.el to keep my config separate from Emacs' auto-config.
+;;
+;;; Code:
+
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ GENERAL CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Open recent files
@@ -7,6 +14,7 @@
 
 (setq initial-scratch-message "")
 (setq org-hide-emphasis-markers t)
+(setq truncate-lines nil)
 
 (load-file "~/.emacs.d/custom-functions.el")
 
@@ -71,12 +79,22 @@
 	:init
 	(define-key my-leader-map "aj" 'ace-jump-mode))
 
+(use-package evil-commentary
+	:diminish
+	:config
+	(evil-commentary-mode))
+
 (use-package evil-mc
 	:diminish
 	:config
 	(global-evil-mc-mode 1)
 	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
   (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
+
+(use-package evil-rsi
+	:diminish
+	:config
+	(evil-rsi-mode))
 
 (use-package flycheck
 	:diminish
@@ -182,6 +200,7 @@
 (define-key my-leader-map "bd" 'kill-buffer)
 (define-key my-leader-map "bn" 'next-buffer)
 (define-key my-leader-map "bp" 'previous-buffer)
+(define-key my-leader-map "br" 'cld/revert-buffer-no-confirm)
 (define-key my-leader-map "bs" 'cld/switch-to-scratch-buffer)
 (define-key my-leader-map "bw" 'read-only-mode)
 
@@ -266,9 +285,9 @@
 (define-key my-leader-map "wF" 'make-frame)
 (define-key my-leader-map "wH" 'evil-window-move-far-left)
 (define-key my-leader-map "wf" 'follow-mode)
+(define-key my-leader-map "wh" 'spacemacs/split-window-below-and-focus)  ;; Spacemacs uses "ws" instead
 (define-key my-leader-map "wk" 'delete-window)
 (define-key my-leader-map "wo" 'other-frame)
-(define-key my-leader-map "ws" 'spacemacs/split-window-below-and-focus)
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
 (define-key my-leader-map "ww" 'other-window)
 
