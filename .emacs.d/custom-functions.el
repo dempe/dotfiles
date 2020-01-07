@@ -233,3 +233,6 @@ the current state and point position."
   (when (and (boundp 'golden-ratio-mode)
              (symbol-value golden-ratio-mode))
     (golden-ratio)))
+
+(provide 'custom-functions.el)
+;;; custom-functions.el ends here

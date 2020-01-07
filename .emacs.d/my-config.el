@@ -230,7 +230,7 @@
 
 ;; format ---------------------------------------------------------------------
 (define-key my-leader-map "jo" 'open-line)
-(define-key my-leader-map "ji" 'cld/indent-region-or-buffer) ;; note: spacemacs uses j=
+(define-key my-leader-map "ji" 'cld/indent-region-or-buffer) ; note: spacemacs uses j=
 
 ;; help -----------------------------------------------------------------------
 (define-key my-leader-map "hdb" 'describe-bindings)
@@ -290,7 +290,7 @@
 (define-key my-leader-map "wF" 'make-frame)
 (define-key my-leader-map "wH" 'evil-window-move-far-left)
 (define-key my-leader-map "wf" 'follow-mode)
-(define-key my-leader-map "wh" 'spacemacs/split-window-below-and-focus)  ;; Spacemacs uses "ws" instead
+(define-key my-leader-map "wh" 'spacemacs/split-window-below-and-focus)  ; Spacemacs uses "ws" instead
 (define-key my-leader-map "wk" 'delete-window)
 (define-key my-leader-map "wo" 'other-frame)
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
@@ -310,3 +310,6 @@
 (define-key my-leader-map "xtw" 'transpose-words)
 (define-key my-leader-map "xU" 'upcase-region)
 (define-key my-leader-map "xu" 'downcase-region)
+
+(provide 'my-config.el)
+;;; my-config.el ends here
