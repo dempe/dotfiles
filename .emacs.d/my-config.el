@@ -1,4 +1,5 @@
 ;;; my-config.el -- Manual configs
+;; my test
 
 ;;; Commentary:
 ;;
@@ -14,11 +15,16 @@
 (setq recentf-max-saved-items 25)
 
 (setq initial-scratch-message "")
-(setq org-hide-emphasis-markers t)
-(setq truncate-lines nil)
-(setq org-startup-truncated nil)
+(setq truncate-lines nil)                      ; Turn on word wrap
+(setq org-startup-truncated nil)               ; org-mode does not obey general word wrap setting
 
-(load-file "~/.emacs.d/custom-functions.el")
+;; Set transparency
+;; (set-frame-parameter (selected-frame) 'alpha '(85 85))
+;; (add-to-list 'default-frame-alist '(alpha 85 85))
+
+(scroll-bar-mode -1)                          ; Hide scrollbars
+
+(load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -26,14 +32,12 @@
 												 ("org" . "http://orgmode.org/elpa/")))
 (require 'package)
 (package-initialize)
-;; Refresh packages asynchronously
-(package-refresh-contents 1)
+(package-refresh-contents 1)                  ; Refresh packages asynchronously
 
 ;; Setup use-package
 (eval-when-compile
   (require 'use-package))
-;; Generate a report of load times with M-x use-package-report
-(setq use-package-compute-statistics 1)
+(setq use-package-compute-statistics 1)       ; Generate a report of load times with M-x use-package-report
 
 (use-package anzu
 	:diminish
@@ -65,7 +69,7 @@
 	(define-key evil-normal-state-map (kbd "SPC") my-leader-map))
 
 (use-package ace-jump-mode
-	:after evil ;; should make this order-agnostic, but this does not appear to work
+	:after evil                                 ; Should make this order-agnostic, but this does not appear to work
 	:init
 	(define-key my-leader-map "aj" 'ace-jump-mode))
 
