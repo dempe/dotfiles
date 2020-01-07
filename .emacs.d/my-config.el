@@ -16,6 +16,7 @@
 (setq initial-scratch-message "")
 (setq org-hide-emphasis-markers t)
 (setq truncate-lines nil)
+(setq org-startup-truncated nil)
 
 (load-file "~/.emacs.d/custom-functions.el")
 
