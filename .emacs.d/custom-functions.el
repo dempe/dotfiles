@@ -10,15 +10,15 @@
 
 ;;; Code:
  
+(defvar spacemacs-really-kill-emacs nil
+  "Prevent window manager close from closing instance.")
+
 (defun cld/insert-org-code-block ()
 	"Insert an elisp `org-mode` code block on the following line."
   (interactive)
 	(forward-line)
   (insert "#+BEGIN_SRC emacs-lisp -n\n\n#+END_SRC")
 	(forward-line -1))
-
-(defvar spacemacs-really-kill-emacs nil
-  "Prevent window manager close from closing instance.")
 
 (defun cld/open-config ()
   "Edit the `dotfile', in the current window."
@@ -79,6 +79,14 @@
 	"Load https://github.com/bbatsov/solarized-emacs light."
 	(interactive)
 	(load-theme 'solarized-light t))
+
+(defun cld/toggle-line-numbers ()
+	"Toggle `global-linum-mode`."
+	(interactive)
+	(cond
+	 ((global-linum-mode) (global-linum-mode 0))
+	 (else
+		(global-linum-mode t))))
 
 (defun cld/reload-config ()
   (interactive)

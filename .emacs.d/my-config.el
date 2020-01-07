@@ -39,18 +39,6 @@
 	:config
 	(global-anzu-mode 1))
 
-;; *Both* TAB and RET autocomplete a word. This is extremely frustrating when I want to enter a newline. How do you turn this off for RET?
-;; Update: Solved with https://emacs.stackexchange.com/a/13290
-;; However, now if you press tab to complete something from the menu then try to press RET, you will get an error message and be unable to move the cursor.
-;; How do you turn off the menu?
-;; Update: You can get unstuck with C-g; the menu is simply for when there are multiple choices. Still annoying.
-(use-package company
-	:diminish
-	:config
-	(define-key company-active-map (kbd "RET") nil)
-	(define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
-	:hook (after-init . global-company-mode))
-
 (use-package diminish
 	:config
 	(diminish 'undo-tree-mode)
@@ -281,6 +269,9 @@
 (define-key my-leader-map "osp" 'org-set-property)
 (define-key my-leader-map "ost" 'org-set-tags-command)
 (define-key my-leader-map "ot" 'org-todo)
+
+;; toggle ---------------------------------------------------------------------
+(define-key my-leader-map "tn" 'cld/toggle-line-numbers)
 
 ;; windows --------------------------------------------------------------------
 (define-key my-leader-map "w=" 'balance-windows)
