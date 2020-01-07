@@ -14,6 +14,7 @@
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 
+(setq make-backup-files nil)                   ; I use git for pretty much everything
 (setq initial-scratch-message "")
 (setq truncate-lines nil)                      ; Turn on word wrap
 (setq org-startup-truncated nil)               ; org-mode does not obey general word wrap setting
@@ -23,7 +24,6 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 85))
 
 (scroll-bar-mode -1)                          ; Hide scrollbars
-
 (load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
