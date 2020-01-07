@@ -1,8 +1,9 @@
 ;;; my-config.el -- Manual configs
+
 ;;; Commentary:
 ;;
 ;; This file is loaded in init.el to keep my config separate from Emacs' auto-config.
-;;
+
 ;;; Code:
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ GENERAL CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -244,12 +245,12 @@
 (define-key my-leader-map "hn" 'view-emacs-news)
 
 ;; insert ---------------------------------------------------------------------
-(define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
-(define-key my-leader-map "ij" 'spacemacs/evil-insert-line-below)
-(define-key my-leader-map "iday" 'cld/insert-day)
-(define-key my-leader-map "it" 'cld/insert-time)
-(define-key my-leader-map "idt" 'cld/insert-datetime)
+(define-key my-leader-map "ida" 'cld/insert-day)
 (define-key my-leader-map "idl" 'cld/insert-date-long)
+(define-key my-leader-map "idt" 'cld/insert-datetime)
+(define-key my-leader-map "ij" 'spacemacs/evil-insert-line-below)
+(define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
+(define-key my-leader-map "it" 'cld/insert-time)
 
 ;; narrow & widen -------------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
@@ -266,7 +267,8 @@
 
 ;; org-mode --------------------------------------------------------------------
 (define-key my-leader-map "ob" 'org-backward-heading-same-level)
-(define-key my-leader-map "oc" 'org-clock-in)
+(define-key my-leader-map "ocb" 'cld/insert-org-code-block)
+(define-key my-leader-map "oci" 'org-clock-in)
 (define-key my-leader-map "odd" 'org-do-demote)
 (define-key my-leader-map "odp" 'org-do-promote)
 (define-key my-leader-map "ods" 'org-demote-subtree)

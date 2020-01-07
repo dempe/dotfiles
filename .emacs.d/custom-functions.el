@@ -9,7 +9,13 @@
 ;;   - https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/funcs.el
 
 ;;; Code:
-
+ 
+(defun cld/insert-org-code-block ()
+	"Insert an elisp `org-mode` code block on the following line."
+  (interactive)
+	(forward-line)
+  (insert "#+BEGIN_SRC emacs-lisp -n\n\n#+END_SRC")
+	(forward-line -1))
 
 (defvar spacemacs-really-kill-emacs nil
   "Prevent window manager close from closing instance.")
