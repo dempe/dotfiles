@@ -59,13 +59,46 @@
         (message "Indented buffer.")))
     (whitespace-cleanup)))
 
+;; This is more convenient than i SPC SPC ESC if you're in normal mode.
+(defun cld/insert-space ()
+	"Insert a space at `point`."
+	(interactive)
+	(insert " "))
+
+(defun cld/org-demote-header ()
+	"Demote a header and move to EOL."
+	(interactive)
+	(org-do-demote)
+	(end-of-line))
+
+;; When would you ever *not* want to put a space after the *?
+(defun cld/org-insert-header ()
+	"Insert new header below followed by a space."
+	(interactive)
+  (org-insert-heading-respect-content)
+	(insert " "))
+
+;; Can't seem to find a native `org-mode` function that does this.
+(defun cld/org-insert-new-subheader ()
+	"Insert new subheader below followed by a space."
+	(interactive)
+  (org-insert-heading-respect-content)
+	(delete-char -1) ; We need the asterisks to be sequential. The above inserts a SPC.
+	(insert "*  "))
+
+(defun cld/org-promote-header ()
+	"Promote a header and move to EOL."
+	(interactive)
+	(org-do-promote)
+	(end-of-line))
+
 ;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
 (defun cld/revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 
-(defun cld/load-theme-nova ()
+ (defun cld/load-theme-nova ()
 	"Load nova-theme: https://github.com/muirmanders/emacs-nova-theme."
 	(interactive)
 	(load-theme 'nova t))
@@ -83,10 +116,9 @@
 (defun cld/toggle-line-numbers ()
 	"Toggle `global-linum-mode`."
 	(interactive)
-	(cond
-	 ((global-linum-mode) (global-linum-mode 0))
-	 (else
-		(global-linum-mode t))))
+	(if global-linum-mode
+		(global-linum-mode 0)
+		(global-linum-mode t)))
 
 (defun cld/reload-config ()
   (interactive)
