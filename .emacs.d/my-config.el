@@ -86,6 +86,11 @@
 	:config
 	(evil-rsi-mode))
 
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
 (use-package flycheck
 	:diminish
 	:config
