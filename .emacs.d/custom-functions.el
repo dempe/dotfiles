@@ -67,7 +67,6 @@
   (interactive)
   (insert (format-time-string "%c")))
 
-;; Note: doesn't seem to do anything
 (defun cld/indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
