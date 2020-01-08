@@ -146,6 +146,12 @@
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
+(defun cld/switch-to-buffer-list ()
+  "Switch to the `*Buffer List*' buffer and focus."
+  (interactive)
+  (let ((exists (get-buffer "*Buffer List*")))
+    (switch-to-buffer (get-buffer-create "*Buffer List*"))))
+
 (defun cld/switch-to-scratch-buffer ()
   "Switch to the `*scratch*' buffer.  Create it first if needed."
   (interactive)

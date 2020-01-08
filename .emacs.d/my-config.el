@@ -36,7 +36,7 @@
 
 ;; Setup use-package
 (eval-when-compile
-  (require 'use-package))
+	(require 'use-package))
 (setq use-package-compute-statistics 1)       ; Generate a report of load times with M-x use-package-report
 
 (use-package anzu
@@ -55,14 +55,14 @@
 	(evil-mode 1)
 
 	(setq evil-search-wrap t
-			evil-regexp-search t)
-  (setq-default tab-width 2)
+				evil-regexp-search t)
+	(setq-default tab-width 2)
 
 	(defvar my-leader-map (make-sparse-keymap)
-	"Keymap for \"leader key\" shortcuts.")
-	
-  ;; binding "," to the keymap
-  (define-key evil-normal-state-map "," my-leader-map)
+		"Keymap for \"leader key\" shortcuts.")
+
+	;; binding "," to the keymap
+	(define-key evil-normal-state-map "," my-leader-map)
 
 	;; change the "leader" key to space
 	(define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
@@ -83,7 +83,7 @@
 	:config
 	(global-evil-mc-mode 1)
 	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
-  (define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
+	(define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
 
 (use-package evil-rsi
 	:diminish
@@ -91,16 +91,16 @@
 	(evil-rsi-mode))
 
 (use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
+	:ensure t
+	:config
+	(global-evil-surround-mode 1))
 
 (use-package flycheck
 	:diminish
 	:config
 	(global-flycheck-mode)
 	(define-key my-leader-map "en" 'next-error)
-  (define-key my-leader-map "ep" 'previous-error))
+	(define-key my-leader-map "ep" 'previous-error))
 
 ;; Bind <SPC c> to the M-x function (with Helm).
 ;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
@@ -108,15 +108,15 @@
 (use-package helm
 	:config
 	(setq
-  helm-always-two-windows t
-  helm-split-window-default-side 'left)
+	 helm-always-two-windows t
+	 helm-split-window-default-side 'left)
 	(define-key my-leader-map "c" 'helm-M-x))
 
 (use-package helm-flx
 	:config
-  (helm-flx-mode 1)
+	(helm-flx-mode 1)
 	(setq helm-flx-for-helm-find-files t
-        helm-flx-for-helm-locate t))
+				helm-flx-for-helm-locate t))
 
 ;; needs more setup. does not work.
 (use-package helm-fuzzier
@@ -126,55 +126,55 @@
 (use-package paradox
 	:config
 	(paradox-enable))
- 
+
 (use-package rainbow-delimiters
 	:hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package solarized-theme
 	:init
 	;; make the fringe stand out from the background
-  (setq solarized-distinct-fringe-background t)
-  
-  ;; Don't change the font for some headings and titles
-  (setq solarized-use-variable-pitch nil)
-  
-  ;; make the modeline high contrast
-  (setq solarized-high-contrast-mode-line nil)
-  
-  ;; Use less bolding
-  (setq solarized-use-less-bold t)
-  
-  ;; Use more italics
-  (setq solarized-use-more-italic t)
-	
-  ;; Avoid all font-size changes
-  (setq solarized-height-minus-1 1.0)
-  (setq solarized-height-plus-1 1.0)
-  (setq solarized-height-plus-2 1.0)
-  (setq solarized-height-plus-3 1.0)
-  (setq solarized-height-plus-4 1.0)
+	(setq solarized-distinct-fringe-background t)
+
+	;; Don't change the font for some headings and titles
+	(setq solarized-use-variable-pitch nil)
+
+	;; make the modeline high contrast
+	(setq solarized-high-contrast-mode-line nil)
+
+	;; Use less bolding
+	(setq solarized-use-less-bold t)
+
+	;; Use more italics
+	(setq solarized-use-more-italic t)
+
+	;; Avoid all font-size changes
+	(setq solarized-height-minus-1 1.0)
+	(setq solarized-height-plus-1 1.0)
+	(setq solarized-height-plus-2 1.0)
+	(setq solarized-height-plus-3 1.0)
+	(setq solarized-height-plus-4 1.0)
 
 	:config
-  (define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
-  (define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark))
+	(define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
+	(define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark))
 
 (use-package moe-theme
 	:config
-  (define-key my-leader-map "ltml" 'moe-light)
-  (define-key my-leader-map "ltmd" 'moe-dark))
+	(define-key my-leader-map "ltml" 'moe-light)
+	(define-key my-leader-map "ltmd" 'moe-dark))
 
 (use-package nova-theme
 	:config
-  (define-key my-leader-map "ltn" 'cld/load-theme-nova))
+	(define-key my-leader-map "ltn" 'cld/load-theme-nova))
 (use-package spaceline-config
 	:config
-  (spaceline-emacs-theme))
+	(spaceline-emacs-theme))
 
 (use-package which-key
 	:diminish
 	:config
-  (which-key-setup-side-window-right-bottom)
-  (which-key-mode))
+	(which-key-setup-side-window-right-bottom)
+	(which-key-mode))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -195,7 +195,7 @@
 (define-key my-leader-map "TAB" 'spacemacs/alternate-buffer)
 (define-key my-leader-map "bN" 'spacemacs/new-empty-buffer)
 (define-key my-leader-map "bY" 'spacemacs/paste-clipboard-to-whole-buffer)
-(define-key my-leader-map "bb" 'list-buffers)
+(define-key my-leader-map "bb" 'cld/switch-to-buffer-list)
 (define-key my-leader-map "bd" 'kill-buffer)
 (define-key my-leader-map "bn" 'next-buffer)
 (define-key my-leader-map "bp" 'previous-buffer)
