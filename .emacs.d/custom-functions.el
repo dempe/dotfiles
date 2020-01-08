@@ -16,6 +16,16 @@
 (defun cld/insert-org-code-block ()
 	"Insert an elisp `org-mode` code block on the following line."
   (interactive)
+
+	;; First, make sure there is a newline to go to.
+	(condition-case error
+    (progn
+      (search-forward "\n"))
+    (error
+	    (end-of-line)
+      (insert "\n")))
+
+	;; Go to next line and insert code block, placing cursor inside block.
 	(forward-line)
   (insert "#+BEGIN_SRC emacs-lisp -n\n\n#+END_SRC")
 	(forward-line -1))
