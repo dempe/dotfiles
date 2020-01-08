@@ -248,6 +248,9 @@
 (define-key my-leader-map "idt" 'cld/insert-datetime)
 (define-key my-leader-map "ij" 'spacemacs/evil-insert-line-below)
 (define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
+(define-key my-leader-map "inl" 'cld/insert-line-below)
+(define-key my-leader-map "inL" 'cld/insert-line-above)
+(define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
 (define-key my-leader-map "is" 'cld/insert-space)
 (define-key my-leader-map "it" 'cld/insert-time)
 

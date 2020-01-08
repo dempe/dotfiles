@@ -30,6 +30,18 @@
   (insert "#+BEGIN_SRC emacs-lisp -n\n\n#+END_SRC")
 	(forward-line -1))
 
+(defun cld/insert-line-above ()
+	"Insert a line above `point`."
+	(interactive)
+  (beginning-of-line)
+  (insert "\n"))
+
+(defun cld/insert-line-below ()
+	"Insert a line below `point`."
+	(interactive)
+  (end-of-line)
+  (insert "\n"))
+
 (defun cld/open-config ()
   "Edit the `dotfile', in the current window."
   (interactive)
