@@ -137,6 +137,13 @@
 	:config
 	(helm-fuzzier-mode 1))
 
+(use-package ido-completing-read+
+	:init
+	(ido-mode 1)
+  (ido-everywhere 1)
+	:config
+	(ido-ubiquitous-mode 1))
+
 (use-package paradox
 	:config
 	(paradox-enable))
