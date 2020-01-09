@@ -21,8 +21,8 @@
 (setq org-startup-truncated nil)               ; org-mode does not obey general word wrap setting
 
 ;; Set transparency
-(set-frame-parameter (selected-frame) 'alpha '(85 50))
-(add-to-list 'default-frame-alist '(alpha 85 50))
+;; (set-frame-parameter (selected-frame) 'alpha '(85 50))
+;; (add-to-list 'default-frame-alist '(alpha 85 50))
 
 (scroll-bar-mode -1)                          ; Hide scrollbars
 (load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
