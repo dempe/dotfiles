@@ -68,6 +68,12 @@
 	:config
 	(evil-mode 1)
 
+	(dolist (mode '(git-rebase-mode
+        flycheck-error-list-mode
+				osx-dictionary-mode              ; TODO: how can I just disable the o, s, r, q keybindings for this mode?
+        term-mode))
+  (add-to-list 'evil-emacs-state-modes mode))
+
 	(setq evil-search-wrap t
 				evil-regexp-search t)
 	(setq-default tab-width 2)
