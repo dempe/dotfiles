@@ -14,14 +14,15 @@
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 
+(setq ispell-program-name "/usr/local/bin/ispell")
 (setq make-backup-files nil)                   ; I use git for pretty much everything
 (setq initial-scratch-message "")
 (setq truncate-lines nil)                      ; Turn on word wrap
 (setq org-startup-truncated nil)               ; org-mode does not obey general word wrap setting
 
 ;; Set transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(85 85))
-;; (add-to-list 'default-frame-alist '(alpha 85 85))
+(set-frame-parameter (selected-frame) 'alpha '(85 50))
+(add-to-list 'default-frame-alist '(alpha 85 50))
 
 (scroll-bar-mode -1)                          ; Hide scrollbars
 (load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
@@ -43,6 +44,19 @@
 	:diminish
 	:config
 	(global-anzu-mode 1))
+
+(use-package darkroom
+  :ensure t
+	:demand t
+  :config
+  (setq darkroom-text-scale-increase 1))
+
+(use-package desktop+
+	:diminish
+	:config
+  :demand t
+  :config
+  (desktop-save-mode 1))
 
 (use-package diminish
 	:config
@@ -271,14 +285,14 @@
 (define-key my-leader-map "ob" 'org-backward-heading-same-level)
 (define-key my-leader-map "ocb" 'cld/insert-org-code-block)
 (define-key my-leader-map "oci" 'org-clock-in)
-(define-key my-leader-map "odd" 'cld/org-demote-header)
-(define-key my-leader-map "odp" 'cld/org-promote-header)
+(define-key my-leader-map "odh" 'cld/org-demote-header)
 (define-key my-leader-map "ods" 'org-demote-subtree)
 (define-key my-leader-map "oes" 'org-edit-special)
 (define-key my-leader-map "oem" 'cld/toggle-org-emphasis-markers)
 (define-key my-leader-map "of" 'org-forward-heading-same-level)
 (define-key my-leader-map "oi" 'cld/org-insert-header)
 (define-key my-leader-map "ons" 'cld/org-insert-new-subheader)
+(define-key my-leader-map "oph" 'cld/org-promote-header)
 (define-key my-leader-map "ops" 'org-promote-subtree)
 (define-key my-leader-map "osa" 'outline-show-all)
 (define-key my-leader-map "osp" 'org-set-property)
@@ -287,6 +301,7 @@
 
 ;; toggle ---------------------------------------------------------------------
 (define-key my-leader-map "tn" 'cld/toggle-line-numbers)
+(define-key my-leader-map "tw" 'whitespace-mode)
 
 ;; windows --------------------------------------------------------------------
 (define-key my-leader-map "w=" 'balance-windows)

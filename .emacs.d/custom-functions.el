@@ -9,7 +9,7 @@
 ;;   - https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/funcs.el
 
 ;;; Code:
- 
+
 (defvar spacemacs-really-kill-emacs nil
   "Prevent window manager close from closing instance.")
 
@@ -74,10 +74,10 @@
     (if (region-active-p)
         (progn
           (indent-region (region-beginning) (region-end))
-          (message "Indented selected region."))
+          (message "indented selected region."))
       (progn
         (evil-indent (point-min) (point-max))
-        (message "Indented buffer.")))
+        (message "indented buffer.")))
     (whitespace-cleanup)))
 
 ;; This is more convenient than i SPC SPC ESC if you're in normal mode.
