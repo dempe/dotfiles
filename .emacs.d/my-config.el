@@ -284,6 +284,7 @@
 
 ;; journal --------------------------------------------------------------------
 (define-key my-leader-map "jp" 'cld/make-new-journal-post)
+(define-key my-leader-map "js" 'cld/insert-sidenote)
 
 ;; navigation/jumping ---------------------------------------------------------
 (define-key my-leader-map "j0" 'spacemacs/push-mark-and-goto-beginning-of-line)

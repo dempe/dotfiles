@@ -45,7 +45,15 @@
 (defun cld/make-new-journal-post ()
 	"Make a new journal post interactively and open for editing."
 	(interactive)
-	(create-and-open-file (build-new-post-filename)))
+	(create-and-open-file (build-new-post-filename))
+	(darkroom-tentative-mode))
+
+(defun cld/insert-sidenote ()
+	"Create a sidenote and place cursor inside tags."
+	(interactive)
+	(insert "**\\***<sidenote></sidenote>")
+	(backward-char 11))                   ; The number of chars in "</sidenote>".
+
 
 (provide 'journal-functions)
 
