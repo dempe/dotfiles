@@ -42,6 +42,11 @@
 	(write-region (build-frontmatter) nil filename)
 	(find-file filename))
 
+(defun cld/make-new-journal-post ()
+	"Make a new journal post interactively and open for editing."
+	(interactive)
+	(create-and-open-file (build-new-post-filename)))
+
 (provide 'journal-functions)
 
 ;;; journal-functions ends here

@@ -26,6 +26,7 @@
 
 (scroll-bar-mode -1)                          ; Hide scrollbars
 (load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
+(load-file "~/.emacs.d/journal-functions.el")  ; Load helper functions for journaling
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -280,6 +281,18 @@
 (define-key my-leader-map "ik" 'spacemacs/evil-insert-line-above)
 (define-key my-leader-map "is" 'cld/insert-space)
 (define-key my-leader-map "it" 'cld/insert-time)
+
+;; journal --------------------------------------------------------------------
+(define-key my-leader-map "jp" 'cld/make-new-journal-post)
+
+;; navigation/jumping ---------------------------------------------------------
+(define-key my-leader-map "j0" 'spacemacs/push-mark-and-goto-beginning-of-line)
+(define-key my-leader-map "j$" 'spacemacs/push-mark-and-goto-end-of-line)
+(define-key my-leader-map "jf" 'find-function)
+(define-key my-leader-map "jv" 'find-variable)
+
+;; markdown -------------------------------------------------------------------
+;; TODO
 
 ;; narrow & widen -------------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
