@@ -283,6 +283,7 @@
 (define-key my-leader-map "it" 'cld/insert-time)
 
 ;; journal --------------------------------------------------------------------
+(define-key my-leader-map "jl" 'cld/open-latest-journal-post)
 (define-key my-leader-map "jp" 'cld/make-new-journal-post)
 (define-key my-leader-map "js" 'cld/insert-sidenote)
 

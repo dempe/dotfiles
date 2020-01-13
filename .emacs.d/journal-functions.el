@@ -48,11 +48,25 @@
 	(create-and-open-file (build-new-post-filename))
 	(darkroom-tentative-mode))
 
+(defun cld/open-latest-journal-post ()
+	"Open the most recent journal post for editing."
+	(interactive)
+  (find-file
+	 (concat
+		journal-posts-dir
+		(concat
+	   (number-to-string
+			(-
+			  (string-to-number (build-new-post-title))
+			  1))
+	   ".md")))
+	(darkroom-mode))
+
 (defun cld/insert-sidenote ()
 	"Create a sidenote and place cursor inside tags."
 	(interactive)
 	(insert "**\\***<sidenote></sidenote>")
-	(backward-char 11))                   ; The number of chars in "</sidenote>".
+	(backward-char 11))                      ; The number of chars in "</sidenote>".
 
 
 (provide 'journal-functions)
