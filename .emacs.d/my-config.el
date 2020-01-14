@@ -186,8 +186,8 @@
 	(setq solarized-height-plus-4 1.0)
 
 	:config
-	(define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
-	(define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark))
+	(define-key my-leader-map "ltsl" (lambda () (interactive) (load-theme 'solarized-light t)))
+	(define-key my-leader-map "ltsd" (lambda () (interactive) (load-theme 'solarized-dark t))))
 
 (use-package spacemacs-theme
   :defer t
@@ -198,14 +198,7 @@
 	(setq spacemacs-theme-org-highlight nil)
 	(setq spacemacs-theme-org-priority-bold nil)
 	(define-key my-leader-map "ltl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
-	(define-key my-leader-map "ltd" (lambda () (interactive) (load-theme 'spacemacs-dark t)))
-  (setq spacemacs-theme-custom-colors
-                      '((bg1 . "#000000")
-                        (bg2 . "#00000f")
-                        (bg3 . "#00000f")
-                        (cblk-bg . "#00000f")
-                        (cblk-ln-bg . "#00000f")
-                        (highlight . "#0000ff"))))
+	(define-key my-leader-map "ltd" 'cld/load-spacemacs-dark-theme))
 
 (use-package which-key
 	:diminish
@@ -238,7 +231,7 @@
 (define-key my-leader-map "bd" 'kill-buffer)
 (define-key my-leader-map "bn" 'next-buffer)
 (define-key my-leader-map "bp" 'previous-buffer)
-(define-key my-leader-map "br" 'cld/revert-buffer-no-confirm)
+(define-key my-leader-map "br" (lambda () (interactive) (revert-buffer :ignore-auto :noconfirm)))
 (define-key my-leader-map "bs" 'cld/switch-to-scratch-buffer)
 (define-key my-leader-map "bw" 'read-only-mode)
 
@@ -252,7 +245,7 @@
 (define-key my-leader-map "fD" 'spacemacs/delete-current-buffer-file)
 (define-key my-leader-map "fS" 'evil-write-all)
 (define-key my-leader-map "fc" 'spacemacs/copy-file)
-(define-key my-leader-map "fed" 'cld/open-config)
+(define-key my-leader-map "fed" (lambda (interactive) (load-file "~/.emacs.d/init.el")))
 (define-key my-leader-map "fer" 'cld/reload-config)
 (define-key my-leader-map "ff" 'find-file)
 (define-key my-leader-map "fg" 'rgrep)

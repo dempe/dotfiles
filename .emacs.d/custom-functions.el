@@ -113,32 +113,24 @@
 	(org-do-promote)
 	(end-of-line))
 
-;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
-(defun cld/revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
-    (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
-
-(defun cld/load-theme-solarized-dark ()
-	"Load https://github.com/bbatsov/solarized-emacs dark."
+(defun cld/load-spacemacs-dark-theme ()
+	"Load Spacemacs dark theme with some customizations."
 	(interactive)
-	(load-theme 'solarized-dark t))
-
-(defun cld/load-theme-solarized-light ()
-	"Load https://github.com/bbatsov/solarized-emacs light."
-	(interactive)
-	(load-theme 'solarized-light t))
-
+  (setq spacemacs-theme-custom-colors
+                      '((bg1 . "#000000")
+                        (bg2 . "#00000f")
+                        (bg3 . "#00000f")
+                        (cblk-bg . "#00000f")
+                        (cblk-ln-bg . "#00000f")
+                        (highlight . "#0000ff")))
+	(load-theme 'spacemacs-dark t))
+	
 (defun cld/toggle-line-numbers ()
 	"Toggle `global-linum-mode`."
 	(interactive)
 	(if global-linum-mode
 		(global-linum-mode 0)
 		(global-linum-mode t)))
-
-(defun cld/reload-config ()
-  (interactive)
-  (load-file "~/.emacs.d/init.el"))
 
 (defun cld/switch-to-buffer-list ()
   "Switch to the `*Buffer List*' buffer and focus."
