@@ -113,8 +113,9 @@
 	(interactive)
   (setq spacemacs-theme-custom-colors
                       '((bg1 . "#000000")
-                        (bg2 . "#00000f")
-                        (bg3 . "#00000f")
+                        (bg2 . "#222222")
+                        (bg3 . "#444444")
+                        (bg4 . "#666666")
                         (cblk-bg . "#00000f")
                         (cblk-ln-bg . "#00000f")
                         (highlight . "#0000ff")))

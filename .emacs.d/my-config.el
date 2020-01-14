@@ -197,6 +197,7 @@
 	(setq spacemacs-theme-org-height nil)
 	(setq spacemacs-theme-org-highlight nil)
 	(setq spacemacs-theme-org-priority-bold nil)
+
 	(define-key my-leader-map "ltl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
 	(define-key my-leader-map "ltd" 'cld/load-spacemacs-dark-theme))
 
@@ -206,7 +207,7 @@
 	(which-key-setup-side-window-right-bottom)
 	(which-key-mode))
 
-(load-theme 'spacemacs-dark t)
+(cld/load-spacemacs-dark-theme)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -263,6 +264,9 @@
 ;; format ---------------------------------------------------------------------
 (define-key my-leader-map "jo" 'open-line)
 (define-key my-leader-map "ji" 'cld/indent-region-or-buffer) ; note: spacemacs uses j=
+
+;; git ------------------------------------------------------------------------
+(define-key my-leader-map "gs" 'magit-status)
 
 ;; help -----------------------------------------------------------------------
 (define-key my-leader-map "hdb" 'describe-bindings)
