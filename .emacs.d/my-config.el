@@ -186,23 +186,31 @@
 	(define-key my-leader-map "ltsl" 'cld/load-theme-solarized-light)
 	(define-key my-leader-map "ltsd" 'cld/load-theme-solarized-dark))
 
-(use-package moe-theme
-	:config
-	(define-key my-leader-map "ltml" 'moe-light)
-	(define-key my-leader-map "ltmd" 'moe-dark))
-
-(use-package nova-theme
-	:config
-	(define-key my-leader-map "ltn" 'cld/load-theme-nova))
-(use-package spaceline-config
-	:config
-	(spaceline-emacs-theme))
+(use-package spacemacs-theme
+  :defer t
+	:init
+	(setq spacemacs-theme-comment-bg nil)
+	(setq spacemacs-theme-org-bold nil)
+	(setq spacemacs-theme-org-height nil)
+	(setq spacemacs-theme-org-highlight nil)
+	(setq spacemacs-theme-org-priority-bold nil)
+	(define-key my-leader-map "ltl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
+	(define-key my-leader-map "ltd" (lambda () (interactive) (load-theme 'spacemacs-dark t)))
+  (custom-set-variables '(spacemacs-theme-custom-colors
+                      '((bg1 . "#000000")
+                        (bg2 . "#00000f")
+                        (bg3 . "#00000f")
+                        (cblk-bg . "#00000f")
+                        (cblk-ln-bg . "#00000f")
+                        (highlight . "#0000ff")))))
 
 (use-package which-key
 	:diminish
 	:config
 	(which-key-setup-side-window-right-bottom)
 	(which-key-mode))
+
+(load-theme 'spacemacs-dark t)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

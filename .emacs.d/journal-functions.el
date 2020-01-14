@@ -46,7 +46,7 @@
 	"Make a new journal post interactively and open for editing."
 	(interactive)
 	(create-and-open-file (build-new-post-filename))
-	(darkroom-tentative-mode))
+	(darkroom-mode))
 
 (defun cld/open-latest-journal-post ()
 	"Open the most recent journal post for editing."
