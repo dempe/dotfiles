@@ -19,6 +19,10 @@
 (setq initial-scratch-message "")
 (setq truncate-lines nil)                      ; Turn on word wrap
 (setq org-startup-truncated nil)               ; org-mode does not obey general word wrap setting
+(setq inhibit-startup-screen t)
+(setq show-paren-mode t)
+(setq tool-bar-mode nil)
+(put 'narrow-to-region 'disabled nil)
 
 ;; Set transparency
 ;; (set-frame-parameter (selected-frame) 'alpha '(85 50))
@@ -77,6 +81,7 @@
 
 	(setq evil-search-wrap t
 				evil-regexp-search t)
+	(setq evil-want-C-u-scroll t) 
 	(setq-default tab-width 2)
 
 	(defvar my-leader-map (make-sparse-keymap)
@@ -102,9 +107,7 @@
 (use-package evil-mc
 	:diminish
 	:config
-	(global-evil-mc-mode 1)
-	(define-key my-leader-map "emc" 'evil-mc-make-all-cursors)
-	(define-key my-leader-map "emu" 'evil-mc-undo-all-cursors))
+	(global-evil-mc-mode 1))
 
 (use-package evil-rsi
 	:diminish
@@ -196,13 +199,13 @@
 	(setq spacemacs-theme-org-priority-bold nil)
 	(define-key my-leader-map "ltl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
 	(define-key my-leader-map "ltd" (lambda () (interactive) (load-theme 'spacemacs-dark t)))
-  (custom-set-variables '(spacemacs-theme-custom-colors
+  (setq spacemacs-theme-custom-colors
                       '((bg1 . "#000000")
                         (bg2 . "#00000f")
                         (bg3 . "#00000f")
                         (cblk-bg . "#00000f")
                         (cblk-ln-bg . "#00000f")
-                        (highlight . "#0000ff")))))
+                        (highlight . "#0000ff"))))
 
 (use-package which-key
 	:diminish
