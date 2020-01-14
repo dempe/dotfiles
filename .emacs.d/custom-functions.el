@@ -42,11 +42,6 @@
   (end-of-line)
   (insert "\n"))
 
-(defun cld/open-config ()
-  "Edit the `dotfile', in the current window."
-  (interactive)
-  (find-file-existing "~/.emacs.d/my-config.el"))
-
 (defun cld/insert-day ()
   "Insert weekday + ISO 8601 date string."
   (interactive)
@@ -135,7 +130,7 @@
 (defun cld/switch-to-buffer-list ()
   "Switch to the `*Buffer List*' buffer and focus."
   (interactive)
-	(switch-to-buffer "*Buffer List*"))
+	(switch-to-buffer (get-buffer-create "*Buffer List*")))
 
 (defun cld/switch-to-scratch-buffer ()
   "Switch to the `*scratch*' buffer.  Create it first if needed."
