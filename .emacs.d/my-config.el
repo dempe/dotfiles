@@ -104,6 +104,13 @@
 	:config
 	(evil-commentary-mode))
 
+(use-package evil-magit
+	:after evil
+	:after magit
+	:diminish
+	:config
+	(evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward))
+
 (use-package evil-mc
 	:diminish
 	:config
